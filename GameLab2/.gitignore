@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#Downloaded sets of asserts from the asset store
+
+BasicBedroomPack-Mavi3D.meta
+BasicBedroomPack-Mavi3D/
