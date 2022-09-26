@@ -24,7 +24,7 @@ public class CharacterMove : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 forwardCam = new Vector3(mainCamera.forward.x, 0f, mainCamera.forward.z);
-        Vector3 rightCam = new Vector3(mainCamera.right.x, 0f, mainCamera.forward.z);
+        Vector3 rightCam = new Vector3(mainCamera.right.x, 0f, mainCamera.right.z);
         Vector3 movingVector = Input.GetAxis("Horizontal") * rightCam.normalized + Input.GetAxis("Vertical") * forwardCam.normalized;
 
         if (!mainCamera.GetComponent<CameraMove>().staticCamera && movingVector.magnitude >= 0.2f)
@@ -34,14 +34,13 @@ public class CharacterMove : MonoBehaviour
 
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
-            rb.velocity = movingVector * speed;
+            rb.AddForce(movingVector * speed, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
+        if (Input.GetKey(KeyCode.Space) && isGrounded) 
         {
-            rb.AddForce(new Vector3(0, 200, 0));
+            rb.AddForce(new Vector3(0, 100, 0));
+            isGrounded = false;
         }
-
-        isGrounded = false;
     }
 }
