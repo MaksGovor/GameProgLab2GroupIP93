@@ -8,11 +8,17 @@ public class CharacterMove : MonoBehaviour
     private Transform mainCamera;
     public Rigidbody rb;
     public float speed = 3f;
+    private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main.transform;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        isGrounded = true;
     }
 
     void FixedUpdate()
@@ -30,5 +36,12 @@ public class CharacterMove : MonoBehaviour
         {
             rb.velocity = movingVector * speed;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
+        {
+            rb.AddForce(new Vector3(0, 200, 0));
+        }
+
+        isGrounded = false;
     }
 }
