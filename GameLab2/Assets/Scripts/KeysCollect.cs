@@ -7,6 +7,12 @@ public class KeysCollect : MonoBehaviour
     public bool rotate = true; // do you want it to rotate?
     public float rotationSpeed = 50;
     public GameObject collectEffect;
+    private ScoreCounter scoreCounter;
+
+    void Start()
+    {
+        scoreCounter = FindObjectOfType<ScoreCounter>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,8 +32,11 @@ public class KeysCollect : MonoBehaviour
     public void CollectKey()
     {
         if (collectEffect)
+        {
             Instantiate(collectEffect, transform.position, Quaternion.identity);
+        }
 
+        scoreCounter.IncScore();
         Destroy(gameObject);
     }
 }
