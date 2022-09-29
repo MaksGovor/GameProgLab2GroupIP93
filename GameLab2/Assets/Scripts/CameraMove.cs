@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform cameraTarget;
-    public Transform model;
-    public float minAngle;
-    public float maxAngle;
-    public float mouseSensitivity;
-    public bool staticCamera;
+    [SerializeField] Transform cameraTarget;
+    [SerializeField] Transform model;
+    [SerializeField] float minAngle;
+    [SerializeField] float maxAngle;
+    [SerializeField] float mouseSensitivity;
+    [SerializeField] bool staticCamera;
+    public bool isStaticCameraEnable { get; private set; }
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        isStaticCameraEnable = staticCamera;
     }
 
     void Update()

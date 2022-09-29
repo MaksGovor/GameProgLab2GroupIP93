@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour
 {
-    public Transform model;
+    [SerializeField] Transform model;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] float speed = 3f;
+    [SerializeField] float jumpForce = 100f;
     private Transform mainCamera;
-    public Rigidbody rb;
-    public float speed = 3f;
     private bool isGrounded;
 
     void Start()
@@ -27,7 +28,7 @@ public class CharacterMove : MonoBehaviour
         Vector3 rightCam = new Vector3(mainCamera.right.x, 0f, mainCamera.right.z);
         Vector3 movingVector = Input.GetAxis("Horizontal") * rightCam.normalized + Input.GetAxis("Vertical") * forwardCam.normalized;
 
-        if (!mainCamera.GetComponent<CameraMove>().staticCamera && movingVector.magnitude >= 0.2f)
+        if (!mainCamera.GetComponent<CameraMove>().isStaticCameraEnable && movingVector.magnitude >= 0.2f)
         {
             model.rotation = Quaternion.LookRotation(forwardCam, Vector3.up);
         }
@@ -39,7 +40,7 @@ public class CharacterMove : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && isGrounded) 
         {
-            rb.AddForce(new Vector3(0, 100, 0));
+            rb.AddForce(new Vector3(0, jumpForce, 0));
             isGrounded = false;
         }
     }

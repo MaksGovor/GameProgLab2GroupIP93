@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
 
-    private int score;
-    public int keysCount = 3;
-    public Text scoreView;
+    [SerializeField] int keysCount = 3;
+    [SerializeField] Text scoreView;
     private SceneSwitcher sceneSwitcher;
+    private int score;
 
     void Start()
     {

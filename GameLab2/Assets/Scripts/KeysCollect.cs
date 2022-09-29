@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class KeysCollect : MonoBehaviour
 {
-    public bool rotate = true; // do you want it to rotate?
-    public float rotationSpeed = 50;
-    public GameObject collectEffect;
+    [SerializeField] bool rotate = true; // do you want it to rotate?
+    [SerializeField] float rotationSpeed = 50;
+    [SerializeField] GameObject collectEffect;
     private ScoreCounter scoreCounter;
 
     void Start()
